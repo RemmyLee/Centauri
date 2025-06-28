@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegoo Centauri Carbon 3D Printer Head - Maintenance Manual</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        
+        .manual-header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .manual-header h1 {
+            margin: 0;
+            font-size: 2.2em;
+            font-weight: 300;
+        }
+        
+        .manual-header p {
+            margin: 10px 0 0 0;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .toc {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .toc h2 {
+            margin-top: 0;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        .toc ol {
+            columns: 2;
+            column-gap: 30px;
+        }
+        
+        .toc li {
+            margin-bottom: 8px;
+        }
+        
+        .toc a {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: 500;
+        }
+        
+        .toc a:hover {
+            text-decoration: underline;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        
+        .section h3 {
+            color: #34495e;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .section h4 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .danger-box {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-left: 4px solid #e74c3c;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .info-box {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .step-list li {
+            counter-increment: step-counter;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+            position: relative;
+        }
+        
+        .step-list li::before {
+            content: "Step " counter(step-counter);
+            font-weight: bold;
+            color: #3498db;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .tools-list {
+            background: #e8f5e8;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .tools-list h4 {
+            margin-top: 0;
+            color: #27ae60;
+        }
+        
+        .tools-list ul {
+            margin-bottom: 0;
+        }
+        
+        .subsection {
+            margin-left: 20px;
+            padding-left: 20px;
+            border-left: 2px solid #ecf0f1;
+        }
+        
+        strong {
+            color: #2c3e50;
+        }
+        
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                font-size: 12pt;
+            }
+            .manual-header {
+                background: #2c3e50 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            .section {
+                page-break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+            .toc {
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="manual-header">
+        <h1>Elegoo Centauri Carbon 3D Printer Head</h1>
+        <p>Complete Disassembly and Maintenance Manual</p>
+        <p>Version 2.0 - Professional Technical Guide</p>
+    </div>
+
+    <div class="toc">
+        <h2>Table of Contents</h2>
+        <ol>
+            <li><a href="#safety">Safety Information and Preparation</a></li>
+            <li><a href="#tools">Required Tools and Materials</a></li>
+            <li><a href="#preparation">Initial Preparation Steps</a></li>
+            <li><a href="#cables">Cable Management and External Connections</a></li>
+            <li><a href="#airduct">Air Duct and Cooling System</a></li>
+            <li><a href="#housing">Extruder Housing Disassembly</a></li>
+            <li><a href="#heating">Heating System Components</a></li>
+            <li><a href="#communication">Communication and Control Systems</a></li>
+            <li><a href="#cooling">Cooling Fan System</a></li>
+            <li><a href="#drive">Drive System Components</a></li>
+            <li><a href="#advanced">Advanced Internal Disassembly</a></li>
+            <li><a href="#reassembly">Reassembly Guidelines</a></li>
+            <li><a href="#troubleshooting">Troubleshooting and Maintenance</a></li>
+        </ol>
+    </div>
+
+    <div id="safety" class="section">
+        <h2>1. Safety Information and Preparation</h2>
+        
+        <div class="danger-box">
+            <strong>CRITICAL SAFETY WARNING:</strong> This maintenance procedure involves sharp cutting blades, electrical components, and heated elements. Exercise extreme caution throughout all procedures to prevent serious injury.
+        </div>
+
+        <h3>Before Beginning Any Work</h3>
+        <ul>
+            <li><strong>Power Down:</strong> Completely shut down the printer and disconnect from power source</li>
+            <li><strong>Cool Down:</strong> Allow hot end to cool completely (minimum 30 minutes after last use)</li>
+            <li><strong>Workspace:</strong> Ensure adequate lighting and clean, organized work area</li>
+            <li><strong>Documentation:</strong> Have this manual readily available throughout the process</li>
+        </ul>
+
+        <div class="warning-box">
+            <strong>Important:</strong> Take photographs of component orientations and wire routing before disassembly. This documentation will be invaluable during reassembly.
+        </div>
+    </div>
+
+    <div id="tools" class="section">
+        <h2>2. Required Tools and Materials</h2>
+        
+        <div class="tools-list">
+            <h4>Essential Tools</h4>
+            <ul>
+                <li>Phillips head screwdrivers (multiple sizes)</li>
+                <li>Hex/Allen keys (M2.5, M3 sizes)</li>
+                <li>Small needle-nose pliers</li>
+                <li>Anti-static wrist strap (recommended)</li>
+                <li>Digital camera or smartphone for documentation</li>
+                <li>Small containers for screw organization</li>
+                <li>Clean microfiber cloths</li>
+            </ul>
+        </div>
+
+        <div class="tools-list">
+            <h4>Consumable Materials</h4>
+            <ul>
+                <li>Thermal grease/compound</li>
+                <li>Isopropyl alcohol (for cleaning)</li>
+                <li>Cotton swabs</li>
+                <li>Compressed air (for debris removal)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="preparation" class="section">
+        <h2>3. Initial Preparation Steps</h2>
+
+        <ol class="step-list">
+            <li>
+                <strong>Remove Upper Components:</strong>
+                Remove the upper cover glass panel from the printer enclosure.
+            </li>
+            <li>
+                <strong>Clear Filament:</strong>
+                Remove any filament from the extruder system. Use the printer's unload function if available.
+            </li>
+            <li>
+                <strong>Position Print Head:</strong>
+                Move the print head to a central, accessible location within the build chamber using the printer's movement controls.
+            </li>
+            <li>
+                <strong>Organize Workspace:</strong>
+                Prepare labeled containers for different screw types and small components.
+            </li>
+        </ol>
+
+        <div class="info-box">
+            <strong>Tip:</strong> The print head can be repositioned throughout the maintenance process to optimize access to different components. Use the directional arrows shown in your printer's interface to move it as needed.
+        </div>
+    </div>
+
+    <div id="cables" class="section">
+        <h2>4. Cable Management and External Connections</h2>
+
+        <h3>Drag Chain, Communication Cables, and PTFE Tube Removal</h3>
+        
+        <div class="info-box">
+            <strong>Purpose:</strong> This step removes external constraints and provides access to internal components.
+        </div>
+
+        <ol class="step-list">
+            <li>
+                <strong>Remove Drag Chain Mounting:</strong>
+                Locate and remove the four screws (4×4.8×M3) securing the drag chain bracket to the print head assembly. Place screws in a labeled container.
+            </li>
+            <li>
+                <strong>Disconnect Communication Cable:</strong>
+                Remove the two screws (M2.5×6) securing the nozzle communication cable bracket. Gently separate the communication cable from the drag chain assembly without pulling on the wires.
+            </li>
+            <li>
+                <strong>Remove PTFE Tube:</strong>
+                Locate the pneumatic quick-connect fitting. Press down firmly on the fitting's collar and pull the PTFE tube straight out while holding the collar. Release the collar once the tube is completely free.
+            </li>
+        </ol>
+
+        <div class="warning-box">
+            <strong>Wire Handling:</strong> Always support connector housings when disconnecting cables. Never pull directly on wires as this can cause internal breaks or connection failures.
+        </div>
+    </div>
+
+    <div id="airduct" class="section">
+        <h2>5. Air Duct and Cooling System</h2>
+
+        <h3>Extruder Air Duct Component Removal</h3>
+
+        <ol class="step-list">
+            <li>
+                <strong>Remove Main Air Duct Assembly:</strong>
+                Lift the green air duct component upward from the bottom. Locate and carefully disconnect the electrical connector for the cooling fan before completely removing the assembly.
+            </li>
+            <li>
+                <strong>Separate Cooling Fan from Duct:</strong>
+                Remove the two screws (2.6×14mm) mounting the fan to the duct housing. Carefully separate the fan, noting its orientation for proper reassembly.
+            </li>
+            <li>
+                <strong>Remove Air Guide Components:</strong>
+                Remove the three screws (M3×5) securing the air guide/duct components. Separate all cooling air duct parts and clean any accumulated debris from air passages.
+            </li>
+        </ol>
+
+        <div class="warning-box">
+            <strong>Reassembly Critical Point:</strong> During reinstallation, ensure the fan's label side faces the air guide and the fan outlet properly aligns with the air duct configuration.
+        </div>
+    </div>
+
+    <div id="housing" class="section">
+        <h2>6. Extruder Housing Disassembly</h2>
+
+        <h3>Front Shell Removal</h3>
+
+        <ol class="step-list">
+            <li>
+                <strong>Remove Front Cover Screws:</strong>
+                Locate and remove four cone-head screws (M3×6) - two on each side of the front cover. Remove all screws systematically and organize by location.
+            </li>
+            <li>
+                <strong>Remove Front Cover:</strong>
+                Once all screws are removed, carefully lift away the front cover. Check for any internal wiring connections before fully removing.
+            </li>
+        </ol>
+
+        <h3>Back Cover Removal</h3>
+
+        <ol class="step-list">
+            <li>
+                <strong>Remove Back Cover Screws:</strong>
+                Locate and remove the three screws (M3×10) securing the back cover. Keep these screws separate from front cover hardware.
+            </li>
+            <li>
+                <strong>Remove Back Cover:</strong>
+                Carefully lift away the back cover, checking for any remaining wire connections.
+            </li>
+        </ol>
+    </div>
+
+    <div id="heating" class="section">
+        <h2>7. Heating System Components</h2>
+
+        <div class="danger-box">
+            <strong>HEAT WARNING:</strong> Heating components may retain dangerous levels of heat long after printer shutdown. Ensure complete cooling before proceeding with any heating system work.
+        </div>
+
+        <h3>Nozzle Heating Board Disassembly</h3>
+
+        <ol class="step-list">
+            <li>
+                <strong>Remove Heating Board Mounting:</strong>
+                Locate and remove the screws (M3×6) securing the nozzle heating board. Support the heating board during screw removal to prevent stress on connected wires.
+            </li>
+            <li>
+                <strong>Handle Connected Wires:</strong>
+                <strong>DO NOT</strong> forcefully pull or damage the three connected wire types:
+                <ul>
+                    <li><strong>Thermistor wires:</strong> Thin gauge, typically white/red for temperature sensing</li>
+                    <li><strong>Heater cartridge wires:</strong> Thicker gauge, typically red/black for heating element</li>
+                    <li><strong>Cooling fan extension cable:</strong> Multi-conductor with connector</li>
+                </ul>
+                If workspace is cramped, leave wires connected and proceed to subsequent steps for better access.
+            </li>
+        </ol>
+
+        <div class="info-box">
+            <strong>Access Options:</strong> You can either work with limited space (higher risk of wire damage) or complete additional disassembly steps for optimal working space. The full access method is recommended for safety.
+        </div>
+    </div>
+
+    <div id="communication" class="section">
+        <h2>8. Communication and Control Systems</h2>
+
+        <h3>Nozzle Communication Board Disassembly</h3>
+
+        <ol class="step-list">
+            <li>
+                <strong>Disconnect Control Wires:</strong>
+                Carefully disconnect the following components, supporting connectors and never pulling on wires:
+                <ul>
+                    <li><strong>E-axis motor wire:</strong> Main extruder motor control</li>
+                    <li><strong>Model cooling fan extension cable:</strong> Part cooling fan control</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Remove Communication Board Mounting:</strong>
+                Remove the three screws (PA2×6) securing the communication board. Place screws in a separate labeled container.
+            </li>
+            <li>
+                <strong>Remove Communication Board:</strong>
+                Carefully remove the board by moving it diagonally downward. This angle prevents damage to surrounding components and ensures no wires are pinched during removal.
+            </li>
+        </ol>
+    </div>
+
+    <div id="cooling" class="section">
+        <h2>9. Cooling Fan System</h2>
+
+        <h3>Complete Cooling Fan Disassembly</h3>
+
+        <div class="warning-box">
+            <strong>Two Access Methods Available:</strong>
+            <ul>
+                <li><strong>Limited Space Method:</strong> Higher risk of wire damage, experienced technicians only</li>
+                <li><strong>Full Access Method:</strong> Requires heating board removal first but provides optimal safety</li>
+            </ul>
+            The full access method is strongly recommended.
+        </div>
+
+        <ol class="step-list">
+            <li>
+                <strong>Remove Fan Assembly Mounting:</strong>
+                Locate and remove the screws (M3×6) securing the cooling fan component to the main assembly.
+            </li>
+            <li>
+                <strong>Separate Fan from Housing:</strong>
+                Remove the two screws (3×14mm) securing the cooling fan to its housing. Carefully separate the fan from the housing assembly.
+            </li>
+        </ol>
+
+        <div class="danger-box">
+            <strong>Critical Installation Requirement:</strong> During reassembly, the fan label must face the air guide, and the fan outlet position must match the air guide configuration exactly as shown in the original documentation.
+        </div>
+    </div>
+
+    <div id="drive" class="section">
+        <h2>10. Drive System Components</h2>
+
+        <h3>Gearbox and Hot End Separation</h3>
+
+        <ol class="step-list">
+            <li>
+                <strong>Remove Connection Screws:</strong>
+                Locate and remove the four screws (M3×6) connecting the gearbox to the hot end assembly. Remove all screws systematically.
+            </li>
+            <li>
+                <strong>Separate Components:</strong>
+                Carefully separate the gearbox assembly from the hot end assembly. Support both components during separation to prevent dropping.
+            </li>
+        </ol>
+
+        <h3>Extrusion Motor Removal</h3>
+
+        <ol class="step-list">
+            <li>
+                <strong>Remove Motor Mounting:</strong>
+                Remove the two screws (M3×12) securing the extrusion motor to the assembly.
+            </li>
+            <li>
+                <strong>Extract Motor:</strong>
+                Push the motor toward the gear side to disengage the coupling, then carefully extract the motor from the assembly.
+            </li>
+        </ol>
+
+        <div class="warning-box">
+            <strong>Installation Critical Point:</strong> During reassembly, ensure motor wires face upward for proper routing and connection accessibility.
+        </div>
+
+        <h3>Cutting Blade Components</h3>
+
+        <div class="danger-box">
+            <strong>EXTREME DANGER - SHARP BLADES:</strong> This assembly contains extremely sharp cutting blades capable of causing serious injury. Use extreme caution throughout this procedure. Handle all components slowly and deliberately.
+        </div>
+
+        <ol class="step-list">
+            <li>
+                <strong>Remove Cutter and Spring Assembly:</strong>
+                Very carefully remove the two screws (4×5×M3) securing the cutter and spring. Extract the cutter and spring assembly with extreme care due to sharp blade edges.
+            </li>
+            <li>
+                <strong>Replace Individual Blade (if needed):</strong>
+                If blade replacement is necessary, remove the screws (M3×4) securing the blade. Handle the blade with extreme care and ensure proper disposal of old blades.
+            </li>
+        </ol>
+
+        <div class="danger-box">
+            <strong>Installation Critical Requirement:</strong> The blade must face the handle of the bracket during installation. Improper orientation will cause complete system malfunction and potential damage.
+        </div>
+    </div>
+
+    <div id="advanced" class="section">
+        <h2>11. Advanced Internal Disassembly</h2>
+
+        <h3>Complete Gearbox Disassembly</h3>
+
+        <div class="warning-box">
+            <strong>Advanced Procedure:</strong> This section requires careful attention to component orientation and assembly order. Document everything with photographs before proceeding.
+        </div>
+
+        <ol class="step-list">
+            <li>
+                <strong>Remove Gearbox Housing:</strong>
+                Remove the three screws (M3×20) securing the upper and lower gearbox covers. It is recommended to remove the lower cover first for easier access.
+            </li>
+            <li>
+                <strong>Separate Housing Halves:</strong>
+                Internal components create a tight fit between housing halves. Even with all screws removed, covers may resist separation. Gently twist the covers left and right to break the fit. Do not use excessive force.
+            </li>
+            <li>
+                <strong>Remove Internal Components:</strong>
+                Carefully extract components in this order:
+                <ul>
+                    <li><strong>Spring component:</strong> Note orientation carefully</li>
+                    <li><strong>Reduction gear component:</strong> Handle gear teeth carefully</li>
+                    <li><strong>Extrusion clamp component:</strong> Document clamp position</li>
+                    <li><strong>Bearings:</strong> May be embedded separately in upper or lower housing</li>
+                </ul>
+            </li>
+        </ol>
+
+        <div class="danger-box">
+            <strong>Spring Component Critical Warning:</strong> Correct spring orientation is absolutely essential for proper extrusion function. Incorrect installation will cause complete extrusion failure. Reference documentation diagrams carefully.
+        </div>
+
+        <h3>Hot End Complete Disassembly</h3>
+
+        <ol class="step-list">
+            <li>
+                <strong>Remove Silicone Cover:</strong>
+                Carefully peel away the silicone protective cover, noting its orientation for reassembly.
+            </li>
+            <li>
+                <strong>Remove Ceramic Heating Element Fixing Ring:</strong>
+                Remove the fixing ring, paying attention to its specific orientation. The ring has a protrusion that prevents thermistor compression during installation.
+            </li>
+            <li>
+                <strong>Remove Heating Elements:</strong>
+                Carefully extract both the ceramic heating element (heating cartridge) and thermistor (temperature sensor). Handle both components with extreme care to prevent damage.
+            </li>
+        </ol>
+
+        <div class="info-box">
+            <strong>Thermal Grease Maintenance:</strong> Check thermal grease coverage on all mating surfaces. Fresh thermal grease must be applied if coverage is insufficient, grease appears dried or contaminated, or if components are being reinstalled after cleaning.
+        </div>
+    </div>
+
+    <div id="reassembly" class="section">
+        <h2>12. Reassembly Guidelines</h2>
+
+        <h3>General Assembly Principles</h3>
+
+        <ul>
+            <li><strong>Reverse Order:</strong> Generally follow disassembly steps in reverse order</li>
+            <li><strong>Torque Control:</strong> Do not overtighten screws - finger tight plus 1/4 turn is typically sufficient</li>
+            <li><strong>Wire Management:</strong> Ensure all wires are properly routed and secured without pinching</li>
+            <li><strong>Thermal Compounds:</strong> Apply fresh thermal grease to all heating element interfaces</li>
+            <li><strong>Testing:</strong> Test all connections and movements before complete reassembly</li>
+        </ul>
+
+        <h3>Critical Reassembly Checkpoints</h3>
+
+        <div class="subsection">
+            <h4>Component Orientations</h4>
+            <ul>
+                <li><strong>Cooling Fan:</strong> Label side toward air guide, outlet properly aligned</li>
+                <li><strong>Motor Wires:</strong> Must face upward for proper routing</li>
+                <li><strong>Cutting Blade:</strong> Cutting edge toward bracket handle</li>
+                <li><strong>Spring Components:</strong> Follow correct orientation diagrams exactly</li>
+                <li><strong>Fixing Ring:</strong> Protrusion correctly positioned to protect thermistor</li>
+            </ul>
+
+            <h4>Thermal Interface Management</h4>
+            <ul>
+                <li>Apply fresh thermal grease to all thermal interfaces</li>
+                <li>Ensure even coverage without excess that could cause shorts</li>
+                <li>Verify thermistor and heater cartridge proper seating</li>
+            </ul>
+        </div>
+
+        <h3>Post-Reassembly Testing Protocol</h3>
+
+        <ol class="step-list">
+            <li>
+                <strong>Visual Inspection:</strong>
+                Verify all screws are installed and components are properly seated with no visible gaps or misalignments.
+            </li>
+            <li>
+                <strong>Wire Continuity:</strong>
+                Check all electrical connections for proper seating and continuity. Verify no pinched or damaged wires.
+            </li>
+            <li>
+                <strong>Movement Test:</strong>
+                Verify all mechanical components move freely without binding or unusual resistance.
+            </li>
+            <li>
+                <strong>Thermal Test:</strong>
+                Run a controlled heating test at low temperature to verify proper heating system operation before full operation.
+            </li>
+        </ol>
+    </div>
+
+    <div id="troubleshooting" class="section">
+        <h2>13. Troubleshooting and Maintenance</h2>
+
+        <h3>Common Issues and Solutions</h3>
+
+        <div class="subsection">
+            <h4>Heating System Problems</h4>
+            <ul>
+                <li><strong>Poor temperature control:</strong> Check thermal grease application and thermistor connections</li>
+                <li><strong>Heating failure:</strong> Verify heater cartridge connections and inspect for physical damage</li>
+                <li><strong>Temperature reading errors:</strong> Inspect thermistor wiring and seating</li>
+            </ul>
+
+            <h4>Extrusion Issues</h4>
+            <ul>
+                <li><strong>Poor extrusion quality:</strong> Verify spring component orientation and gear alignment</li>
+                <li><strong>Filament cutting problems:</strong> Check cutting blade sharpness and orientation</li>
+                <li><strong>Motor engagement issues:</strong> Inspect gear engagement and motor mounting</li>
+            </ul>
+
+            <h4>Cooling System Problems</h4>
+            <ul>
+                <li><strong>Poor cooling performance:</strong> Verify fan orientation and clean air ducts</li>
+                <li><strong>Fan noise or vibration:</strong> Check fan mounting and blade condition</li>
+                <li><strong>Electrical issues:</strong> Inspect all cooling system connections</li>
+            </ul>
+        </div>
+
+        <h3>Preventive Maintenance Schedule</h3>
+
+        <div class="subsection">
+            <h4>Monthly Inspection</h4>
+            <ul>
+                <li>Visual inspection of all external connections and components</li>
+                <li>Check for loose screws or worn components</li>
+                <li>Clean exterior surfaces and air intake areas</li>
+            </ul>
+
+            <h4>Quarterly Maintenance</h4>
+            <ul>
+                <li>Deep clean all air ducts and cooling passages</li>
+                <li>Check thermal grease condition</li>
+                <li>Inspect cutting blade sharpness</li>
+                <li>Verify all electrical connections</li>
+            </ul>
+
+            <h4>Annual Overhaul</h4>
+            <ul>
+                <li>Complete disassembly and thorough cleaning</li>
+                <li>Replace all thermal compounds</li>
+                <li>Replace worn bearings and mechanical components</li>
+                <li>Update firmware if applicable</li>
+            </ul>
+        </div>
+
+        <div class="warning-box">
+            <strong>Professional Service:</strong> If you encounter issues beyond your technical capability or comfort level, consult with qualified 3D printer service technicians. Improper repairs can cause expensive damage or safety hazards.
+        </div>
+    </div>
+
+    <div class="section" style="text-align: center; background: #ecf0f1;">
+        <h2>Manual Complete</h2>
+        <p>This comprehensive maintenance manual provides detailed procedures for complete disassembly, maintenance, and reassembly of the Elegoo Centauri Carbon 3D printer head system.</p>
+        <p><strong>Always prioritize safety and take adequate time for each procedure.</strong></p>
+        <p style="margin-top: 20px; font-size: 0.9em; color: #7f8c8d;">
+            Version 2.0 | Professional Technical Manual<br>
+            For technical support, consult your printer manufacturer's documentation or qualified service technicians.
+        </p>
+    </div>
+</body>
+</html>
